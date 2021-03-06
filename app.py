@@ -37,8 +37,27 @@ def welcome():
 			f"/api/v1.0/stats"
 	) 
 
+
+@app.route("/api/v1.0/stats/<start>")
+def stats_by_day(start):
+	session = Session(engine)
+	v_statistics = session.query(func.max(Measurement.prcp).label("max"),
+							     func.min(Measurement.prcp).label("min"),
+								 func.avg(Measurement.prcp).label("avg"),
+								 func.count(Measurement.prcp).label("observations")).\
+						    filter(Measurement.date == start).first()
+	v_dict = {}
+	for statistic in v_statistics:
+		v_dict = { "min": v_statistics.min,
+		           "max": v_statistics.max,
+				   "avg": v_statistics.avg,
+				   "observations": v_statistics.observations,
+				   "start_date": start
+			     }
+	return jsonify(v_dict)
+
 @app.route("/api/v1.0/stats/<start>/<end>")
-def stats(start, end):
+def stats_range(start, end):
 	session = Session(engine)
 	v_statistics = session.query(func.max(Measurement.prcp).label("max"),
 							     func.min(Measurement.prcp).label("min"),
