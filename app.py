@@ -14,6 +14,8 @@ base.prepare(engine, reflect=True)
 
 #Get Class
 Measurement = base.classes.measurement
+Station = base.classes.station
+
 
 #Create Session
 
@@ -37,6 +39,21 @@ def welcome():
 			f"/api/v1.0/stats"
 	) 
 
+@app.route("/api/v1.0/stations")
+def stations():
+	session = Session(engine)
+	v_stations = session.query(Station).all()
+	v_station_list = []
+	for station in v_stations:
+		v_station_dict =  {"id": station.id,
+		                   "station": station.station,
+						   "name": station.name,
+						   "latitude": station.latitude,
+						   "longitude": station.longitude,
+						   "elevation": station.elevation
+						  }
+		v_station_list.append(v_station_dict)
+	return jsonify(v_station_list)
 
 @app.route("/api/v1.0/stats/<start>")
 def stats_by_day(start):
@@ -46,14 +63,14 @@ def stats_by_day(start):
 								 func.avg(Measurement.prcp).label("avg"),
 								 func.count(Measurement.prcp).label("observations")).\
 						    filter(Measurement.date == start).first()
-	v_dict = {}
+	v_station_list = []
 	for statistic in v_statistics:
-		v_dict = { "min": v_statistics.min,
-		           "max": v_statistics.max,
-				   "avg": v_statistics.avg,
-				   "observations": v_statistics.observations,
-				   "start_date": start
-			     }
+		v_dict = dict({"min": v_statistics.min,
+		               "max": v_statistics.max,
+				       "avg": v_statistics.avg,
+				       "observations": v_statistics.observations,
+				       "start_date": start}
+					)
 	return jsonify(v_dict)
 
 @app.route("/api/v1.0/stats/<start>/<end>")
