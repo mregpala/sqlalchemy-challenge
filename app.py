@@ -93,7 +93,7 @@ def stats_by_day(start):
 							     func.min(Measurement.prcp).label("min"),
 								 func.avg(Measurement.prcp).label("avg"),
 								 func.count(Measurement.prcp).label("observations")).\
-						    filter(Measurement.date == start).first()
+						    filter(Measurement.date >= start).first()
 	v_station_list = []
 	for statistic in v_statistics:
 		v_dict = dict({"min": v_statistics.min,
