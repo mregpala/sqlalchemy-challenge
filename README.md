@@ -1,6 +1,6 @@
 # SQLAlchemy Challenge
 
-##Challenge Objectives
+## Challenge Objectives
 The goal of the challenge is to provide expert data analysis related to Hawaiin precipitation and temperature observations data that was colleceted by numerous weather station in the area. The data is stored in a SQLLite database.  This challenge requires the use of the following skills:
 
 - SQLAlchemy 
