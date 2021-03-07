@@ -52,7 +52,7 @@ Additionally, the followng is a plot of the same data but rolled at month level:
 
  ## Cimate App
  Utilzing the Flask API platform, I was able to create the following API routes:
- 
+
  - **/api/v1.0/stations** - List all stations
  - **/api/v1.0/tobs** - Returns temperature observations of most active station for the last year of data. 
  - **/api/v1.0/stats/<start>** - Returns TMIN, TAVG, TMAX greater than equal to start date.
@@ -82,5 +82,5 @@ The following is the paired observations by station:
 | USC00519523    | 76.668103    | 72.433333    |
 
 **Results of Paried T Test**
-With P-Value of.00012 and less than .05 we can reject the null hypothesis and report that there is sufficient evidence that the average temperature of the months June and December is different.
+With P-Value of.00012 and less than .05 we can reject the null hypothesis and report that there is sufficient evidence that the average temperature of the months June and December are significantly different.
 
