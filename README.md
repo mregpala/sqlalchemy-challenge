@@ -24,12 +24,19 @@ Additionally, the followng is a plot of the same data but rolled at month level:
 
 **Summary Statistics of Data**
 
-    - Mode: 0.0
-    - Mean: 0.974
-    - Median: 0.40
-    - Standard Deviation: 1.776
-    - Quartiles: .25 = .05, .50 = 1.08
-    - Outliers: Above 2.625 
+ Statistic      | Value        |
+ :------------- | :----------: |
+ count          | 2015         |
+ mean           | 0.176462     |
+ std            | 0.460288     |
+ min            | 0.000000     |
+ 25%            | 0.000000     |
+ 50%            | 0.020000     |
+ 75%            | 0.130000     |
+ max            | 6.700000     |
+
+ Possible outliers above .325 inches of precipitation.
+ 
 
 
 **Station Analysis**
@@ -68,7 +75,7 @@ H<sub>O: There is no significant difference between June and December average te
 
 H<sub>A: There is a significatn difference between Jane and December average temperatures
 
-The following is the paired observations by station:
+**Station Paired Aveverate Temperature Observations**
 | Station        | June         | December     |
 | :------------- | :----------: | -----------: |
 | USC00511918    | 74.139394    | 69.684211    |
